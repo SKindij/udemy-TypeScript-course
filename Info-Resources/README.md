@@ -9,5 +9,12 @@
   * [справочник](https://scriptdev.ru/guide/)
 
 
-
+## Required plugins for VScode
+* Code Runner
+* Live Server
+* Auto Complete Tag
+* ESLint
+* SCSS Formatter
+* Import Cost
+* vscode-icons
 
