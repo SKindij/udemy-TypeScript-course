@@ -28,4 +28,75 @@
 > Creates a tsconfig.json with the recommended settings in the working directory.
 
 
+## Syntactic constructions
+
+* data types:
+  + ``let identifier:type = value;``
+  + ``const IDENTIFIER:type = value;``
+* functions:
+  + ```typescript
+     function identifier(
+       param1:Type,
+       param2:Type
+     ): ReturnedType {
+      return 'value';
+     }
+    ```
+  + ```typescript
+     <T, U>(param: Type, param2: Type): Type => value;
+    ```
+* Classes
+> _instance (static) variables = fields_\
+> _accessors (get/set) = properties_\
+> _computed property & index signature = member_\
+  + ```typescript
+     class Identifier<T> {
+       static staticField: Type = value; // class member
+
+       static get staticProperty(): Type {
+         // class member
+         return value;
+       }
+
+       static set staticProperty(value: Type) {
+         // class member
+       }
+  
+       static staticMethod<T, U>(
+         param0: Type,
+         param1: Type
+       ): Type {
+         // class member
+       }
+
+       [indexSignature: Type]: Type; // class member
+
+       [computedProp]: Type = value; // class member
+
+       field: Type = value; // class member
+
+       get property(): Type {
+         // class member
+         return value;
+       }
+
+       set property(value: Type) {
+       // class member
+       }
+
+       constructor(param0: Type, param1: Type) {}
+
+       method<T, U>(param0: Type, param1: Type): Type {
+         // class member
+       }
+     }
+    ```
+
+
+
+
+
+
+
+
 
