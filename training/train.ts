@@ -66,6 +66,17 @@ console.log(someData[userID]);
 console.log(Number.MAX_SAFE_INTEGER);
 console.log(Number.MIN_SAFE_INTEGER);
 
+// Array destructuring
+const departments:string[] = ['dev', 'design', 'sale'];
+const estimates:number[] = [1400, 980, 640];
+
+const team1 = departments[0];
+
+departments.push('marketing');
+console.log(departments);
+
+
+
 
 
 
