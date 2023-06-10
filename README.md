@@ -22,6 +22,10 @@
 > By leveraging TypeScript, developers can benefit from the advantages of static typing while still enjoying the flexibility and familiarity of JS programming. TS code can be integrated seamlessly with existing JS codebases, enabling gradual adoption and easy migration.
 
 
+### tsc -help
+
+* ``tsc --init``
+> Creates a tsconfig.json with the recommended settings in the working directory.
 
 
 

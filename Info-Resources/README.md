@@ -34,11 +34,10 @@
   - _other developers working on project can easily install necessary dependencies;_
 
 
+#### ts-node
+web: https://www.npmjs.com/package/ts-node
 
-
-
-
-
+> Execute script as `node` + `tsc`: ``ts-node script.ts``
 
 
 
