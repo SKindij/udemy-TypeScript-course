@@ -32,7 +32,7 @@ console.log(userObj);
 
 // about another types
 const createError = (msg:string) => {
-  throw new Error(msg); // => never
+  throw new Error(msg); // => type:never
 };
 
 const isUserBirthday:boolean = true;
@@ -47,12 +47,24 @@ function logBrthMsg(isBirthday:boolean, name:string, age:number):string {
 
 console.log(logBrthMsg(isUserBirthday, userName, userAge));
 
-
+// indicate to code that something does not exist
 const emptiness:null = null;
 
+const uncertainty:undefined = undefined;
+const anyOne:any = undefined;
+let something; // => type:any
 
+// ES 2015: symbol is primitive data type, just like number and string
+let userID:symbol = Symbol('id');
 
+const someData = {
+  [userID]: 17
+};
 
+console.log(someData[userID]);
+
+console.log(Number.MAX_SAFE_INTEGER);
+console.log(Number.MIN_SAFE_INTEGER);
 
 
 
