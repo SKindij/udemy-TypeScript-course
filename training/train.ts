@@ -30,9 +30,25 @@ let userObj:{
 
 console.log(userObj);
 
+// about another types
+const createError = (msg:string) => {
+  throw new Error(msg); // => never
+};
+
+const isUserBirthday:boolean = true;
+
+function logBrthMsg(isBirthday:boolean, name:string, age:number):string {
+  if (isBirthday) {
+    return `Congrats ${name}. You are ${age} years.`
+  } else {
+    return createError('Some error!')
+  }
+}
+
+console.log(logBrthMsg(isUserBirthday, userName, userAge));
 
 
-
+const emptiness:null = null;
 
 
 

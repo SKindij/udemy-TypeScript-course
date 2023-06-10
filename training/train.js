@@ -21,6 +21,21 @@ logCarMsg(userName, userCarModel, useCarYear);
 var userData = '{"userNameData": "PiggiBoy", "userCarModelData": "Mustang", "userCarYearData": 2020}';
 var userObj = JSON.parse(userData);
 console.log(userObj);
+// about another types
+var createError = function (msg) {
+    throw new Error(msg); // => never
+};
+var isUserBirthday = true;
+function logBrthMsg(isBirthday, name, age) {
+    if (isBirthday) {
+        return "Congrats ".concat(name, ". You are ").concat(age, " years.");
+    }
+    else {
+        return createError('Some error!');
+    }
+}
+console.log(logBrthMsg(isUserBirthday, userName, userAge));
+var emptiness = null;
 //todo cd training
 //todo tsc train.ts
 //todo node train.js
