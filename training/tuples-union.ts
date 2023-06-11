@@ -23,13 +23,23 @@ const twoFacedType: string|number = 13;
 const setLetters: string[]|number[] = ['East', 'West'];
 
 function printLetter(letter: string|number):void {
-    console.log(letter);
+    if (typeof letter === 'string') {
+        console.log( letter.toLocaleLowerCase() );
+    } else {
+        console.log( letter.toExponential() );
+    }   
 };
 
 printLetter(2003);
 printLetter('PiggiBoy');
 
 
+const printReadings = (firstArg: number|string, secondArg: number|boolean) => {
+    if (firstArg === secondArg) {
+        console.log( `Readings ${firstArg} is correct!` );
+    }
+    console.log('Check your meter readings.');
+};
 
 
 //todo cd training
