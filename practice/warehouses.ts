@@ -1,47 +1,46 @@
-// clothes warehouse data structure
+type ValidAmount = "empty" | number;
 
-// ClothesWarehouse {
-// 	jackets: "empty" | number;
-// 	hats: "empty" | number;
-// 	socks: "empty" | number;
-// 	pants: "empty" | number;
-// }
+// clothes warehouse data structure
+interface ClothesWarehouse {
+ 	jackets: ValidAmount;
+ 	hats: ValidAmount;
+ 	socks: ValidAmount;
+ 	pants: ValidAmount;
+}
 
 // office supply warehouse data structure
-
-// StationeryWarehouse {
-// 	scissors: "empty" | number;
-// 	paper: "empty" | boolean;
-// }
+interface StationeryWarehouse {
+ 	scissors: ValidAmount;
+ 	paper: "empty" | boolean;
+}
 
 // warehouse data structure with household appliances
-
-// AppliancesWarehouse {
-// 	dishwashers: "empty" | number;
-// 	cookers: "empty" | number;
-// 	mixers: "empty" | number;
-// }
+interface AppliancesWarehouse {
+ 	dishwashers: ValidAmount;
+ 	cookers: ValidAmount;
+ 	mixers: ValidAmount;
+}
 
 // common data structure, inherits all data from the three above
-// + добавляет свои
-
-// TotalWarehouse {
-// 	deficit: boolean;
-// 	date: Date;
-// }
+interface TotalWarehouse 
+  extends ClothesWarehouse, StationeryWarehouse, AppliancesWarehouse {
+ 	deficit: boolean;
+ 	date: Date;
+}
 
 // main object with all data, must fit TotalWarehouse format
-
-const totalData = {
+const totalData:TotalWarehouse = {
 	jackets: 5,
-	hats: "empty",
-	socks: "empty",
+	hats: "empty",	
 	pants: 15,
+	socks: "empty",
 	scissors: 15,
 	paper: true,
 	dishwashers: 3,
 	cookers: "empty",
 	mixers: 14,
+	deficit: true,
+	date: new Date(),
 };
 
 /*
@@ -54,7 +53,7 @@ function printReport(data) {
 	return "Everything fine";
 }
 
-console.log(printReport(totalData));
+console.log( printReport(totalData) );
 // => "We need this items: hats, socks, cookers"
 
 //todo cd practice
