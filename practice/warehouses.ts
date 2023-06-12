@@ -47,10 +47,17 @@ const totalData:TotalWarehouse = {
   function takes main object totalData of desired format and always returns a string
   it should filter data from object and leave only those product names that have value "empty"
 */
-function printReport(data) {
-	return `We need this items: ${"..."}`;
-	// или
+function printReport(data:TotalWarehouse):string {
+  const result:string = Object.entries(data)
+	.filter( (item) => item[1] === "empty" )
+	.reduce( (res, item) => `${res} ${item[0]},`, "" );
+  // condition checks whether result variable has at least one character after removing spaces
+  if (result.trim().length) {
+	  // substring except for last character
+	return `We need this items: ${result.slice(0, -1)}`;
+  } else {
 	return "Everything fine";
+  }
 }
 
 console.log( printReport(totalData) );
