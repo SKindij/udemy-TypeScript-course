@@ -1,10 +1,20 @@
 
-type Config = { protocol: "http" | "https"; port: 3000 | 3001 };
+type ConfigType = { 
+	protocol: "http" | "https"; port: 3000 | 3001 
+};
+interface ConfigInterface {
+	protocol: "http" | "https"; port: 3000 | 3001
+};
+
 type Role = { role: string};
 
-type ConfigWithRole = Config & Role;
+type ConfigWithRole = ConfigType & Role;
 
-const serverConfig:Config = {
+const serverConfig1:ConfigType = {
+	protocol: "https",
+	port: 3001
+};
+const serverConfig2:ConfigInterface = {
 	protocol: "https",
 	port: 3001
 };
@@ -24,6 +34,8 @@ const startsServer:(protocol: "http" | "https", port: 3000 | 3001) => string = (
 }
 
 startsServer("https", 3001);
+startsServer(serverConfig1.protocol, serverConfig1.port);
+startsServer(backupConfig.protocol, backupConfig.port);
 
 
 //todo cd training
