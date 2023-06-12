@@ -1,6 +1,6 @@
 // description of obj with one optional parameter
 interface AppUser {
-    login: string;
+  readonly  login: string;
     password: string;
     age: number;
     email?: string;
@@ -29,6 +29,10 @@ function sendUserData(obj:AppUser, db:string, option?:number):void {
 };  
 
 sendUserData(someUser, dbName, 2023);
+
+// data marked in this way cannot be changed
+const basicPorts: readonly number[] = [3000, 3001, 5555];
+// array modification methods won't work either
 
 
 
