@@ -1,16 +1,18 @@
 
 type Config = { protocol: "http" | "https"; port: 3000 | 3001 };
+type Role = { role: string};
 
-
+type ConfigWithRole = Config & Role;
 
 const serverConfig:Config = {
 	protocol: "https",
 	port: 3001
 };
 
-const backupConfig:Config = {
+const backupConfig:ConfigWithRole = {
 	protocol: "http",
-	port: 3000
+	port: 3000,
+	role: 'admin'
 };
 
 const startsServer:(protocol: "http" | "https", port: 3000 | 3001) => string = (
