@@ -92,10 +92,10 @@
      }
     ```
 
-## Enums
+## [Enums](https://www.typescriptlang.org/docs/handbook/enums.html)
 
 * Numeric enums
-  + ```
+  + ```typescript
       enum Direction {
         Up,
         Down,
@@ -103,9 +103,17 @@
         Right,
       }
     ```
-  + > _Here, Up would have value 0, Down would have 1 ..._
-  + > _... Left has 2, and Right has 3.
-
+  + > _Here, Up would have value 0, Down - 1, Left - 2, and Right- 3._
+* String enums  
+  + ```typescript
+      enum Direction {
+        Up = "UP",
+        Down = "DOWN",
+        Left = "LEFT",
+        Right = "RIGHT",
+      }
+    ```
+* Heterogeneous enums
 
 
 
