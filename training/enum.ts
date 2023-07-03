@@ -19,9 +19,6 @@ function frame(elem:string, dir:Directions, tFunc:TimingFunc):void {
         console.log('Move down!')
         console.log(tFunc)
     }
-
-
-
 }
 
 frame("id", Directions.Up, TimingFunc.EASE);
