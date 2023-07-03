@@ -92,6 +92,21 @@
      }
     ```
 
+## Enums
+
+* Numeric enums
+  + ```
+      enum Direction {
+        Up,
+        Down,
+        Left,
+        Right,
+      }
+    ```
+  + > _Here, Up would have value 0, Down would have 1 ..._
+  + > _... Left has 2, and Right has 3.
+
+
 
 
 
