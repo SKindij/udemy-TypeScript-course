@@ -23,6 +23,3 @@ function frame(elem, dir, tFunc) {
 }
 frame("id", Directions.Up, TimingFunc.EASE);
 frame("id", Directions.Down, TimingFunc.LINEAR);
-//todo cd udemy-TypeScript-course
-//todo cd training
-//todo ts-node enum.ts
