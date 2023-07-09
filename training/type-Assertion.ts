@@ -17,12 +17,12 @@ fetchData(reqOptions1.url, reqOptions1.method as "GET");
 fetchData(reqOptions2.url, reqOptions2.method);
 
 const box = document.querySelector('.box') as HTMLElement;
-box.style
-box?.classList
+const input = document.querySelector('input') as HTMLInputElement;
 
+const someNumber:number = +input.value
+console.log(someNumber);
 
-
-
-
+//todo cd training
+//todo tsc type-Assertion.ts
 
 
