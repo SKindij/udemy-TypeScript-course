@@ -17,5 +17,9 @@ var box = document.querySelector('.box');
 var input = document.querySelector('input');
 var someNumber = +input.value;
 console.log(someNumber);
+var b = { f: 100 };
+input.value = b.f.toString();
+console.log(input.value);
+console.log(someNumber);
 //todo cd training
 //todo tsc type-Assertion.ts

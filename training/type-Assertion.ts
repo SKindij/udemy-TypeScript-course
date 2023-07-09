@@ -22,7 +22,11 @@ const input = document.querySelector('input') as HTMLInputElement;
 const someNumber:number = +input.value
 console.log(someNumber);
 
+let b = {f: 100} as const;
+input.value = b.f.toString();
+console.log(input.value);
+console.log(someNumber);
+
+
 //todo cd training
 //todo tsc type-Assertion.ts
-
-
