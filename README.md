@@ -127,5 +127,12 @@ In this situation, you can use a type assertion to specify a more specific type:
 ```
 
 
+## Window APIs
 
+[DOM-manipulation library](https://github.com/microsoft/TypeScript/blob/main/src/lib/dom.generated.d.ts)\
+&ensp; **Node** is an interface from which a number of DOM API object types inherit. It allows those types to be treated similarly; for example, inheriting the same set of methods, or being tested in the same way.
+
+&ensp; **Element** is the most general base class from which all objects in a Document inherit. It only has methods and properties common to all kinds of elements. More specific classes inherit from Element.
+
+&ensp; Any **HTML element**. Some elements directly implement this interface, while others implement it via an interface that inherits it.
 
