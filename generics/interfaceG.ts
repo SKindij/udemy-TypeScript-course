@@ -20,10 +20,24 @@ processingData('life');
 const serverData1 = 99;
 let resultData = processingData<number>(serverData1);
 
+// product labels for different countries
+interface PrintUK {
+  design: number;
+}
+interface PrintES {
+  design: string;
+}
+// generalized version
+interface Print<T> {
+  design: T;
+}
 
-
-
-
+const somePrint: Print<string> = {
+  design: 'sugar'
+}
+const otherPrint: Print<number> = {
+  design: 12
+}
 
 
 //todo cd generics
