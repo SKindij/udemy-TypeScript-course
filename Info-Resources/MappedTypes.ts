@@ -17,15 +17,23 @@ type Currencies = {
     ukraine: 'uah';
     poland: 'zlt';
 }
-type CreateCustomCurr<Type> = {
+type CreateCustomCurr1<Type> = {
   [P in keyof Type]: string;
 }
   
-type CustomCurrencies = CreateCustomCurr<Currencies>;
+type CustomCurrencies1 = CreateCustomCurr1<Currencies>;
 
+// Template Literal Types
+type MyAnimation = 'fade' | 'swipe';
+type MyDirection = 'in' | 'out';
+type NewAnimation = `${MyAnimation}${MyDirection}`;
+    // => "fadein" | "fadeout" | "swipein" | "swipeout"
 
-
-
+type CreateCustomCurr2<Type> = {
+  [P in keyof Type as `custom${Capitalize<string & P>}`]: string;
+}
+        
+type CustomCurrencies2 = CreateCustomCurr2<Currencies>;
 
 
 //todo cd Info-Resources
