@@ -1,20 +1,17 @@
 interface IPhone {
-	company: string;
-	number: number;
+	company:string;
+	number:number;
+}
+// IMobilePhone повинен успадковуватися від IPhone,
+interface IMobilePhone extends IPhone {
+	size:string;
+	// тип властивості companyPartner залежить від типу company
+	companyPartner:IPhone["company"];
+	manufactured:Date;
 }
 
-// IMobilePhone должен наследоваться от IPhone,
-// тип свойства companyPartner зависит от свойства company
-
-interface IMobilePhone {
-	size: string;
-	companyPartner: "same type as company in Phone";
-	manufactured: Date;
-}
-
-// Типизировать объект phones
-
-const phones = [
+// Типізуємо масив об'єктів phones
+const phones:IMobilePhone[] = [
 	{
 		company: "Nokia",
 		number: 1285637,
@@ -42,18 +39,32 @@ interface IPhonesManufacturedAfterDate extends IMobilePhone {
 	initialDate: string;
 }
 
-// Функция должна отфильтровать массив данных и вернуть новый массив
-// с телефонами, выпущенными после даты в третьем аргументе
-
+// Функція повинна відфільтрувати масив даних та повернути новий масив
+// з телефонами, випущеними після дати у третьому аргументі
 function filterPhonesByDate(
-	phones: [],
-	key: string,
-	initial: string
-): IPhonesManufacturedAfterDate[] {}
+	phones:IMobilePhone[],	key:keyof IMobilePhone,	initial:string
+):IPhonesManufacturedAfterDate[] {
+	return phones
+	  // фільтруємо телефони по даті випуску
+		.filter((phone) => {
+			const manufactured = phone[key];
 
-// Второй аргумент при вызове функции должен быть связан с первым,
-// а значит мы получим подсказки - свойства этого объекта
+			if (
+				manufactured instanceof Date &&
+				manufactured.getTime() > new Date(initial).getTime()
+			) {
+				return phone;
+			}
+		})
+	  // повертаємо новий обєкт із доданою властивістю
+		.map((phone) => {
+			const newObj = { ...phone, initialDate:initial };
+			return newObj;
+		});
+}
 
+// Другий аргумент при виклику функції має бути пов'язаний з першим,
+// отже ми отримаємо підказки - властивості цього об'єкта
 console.log(filterPhonesByDate(phones, "manufactured", "2022-01-01"));
 
 //todo cd practice
