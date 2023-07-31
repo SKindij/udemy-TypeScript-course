@@ -31,7 +31,7 @@ interface IFitnessClub {
 	futureClients: FutureClient[];
 }
 // автоматично додані в залежні (відразу підказка від TS)
-const fitnessClubCenter = {
+const fitnessClubCenter:IFitnessClub = {
 	clubName: "Fitness club Center",
 	location: "central ave. 45, 5th floor",
 	classes: [
@@ -99,14 +99,4 @@ const fitnessClubCenter = {
 	],
 };
 
-
-
-
-
-
-
-
-
-
 //todo cd practice
-//todo ts-node warehouses.ts

@@ -27,7 +27,7 @@ function createSlider({
 createSlider();
 
 // Усі поля у ньому обов'язкові заповнення
-const customSliderOptions = {
+const customSliderOptions:ICustomSlider = {
 	container: "id",
 	numberOfSlides: 4,
 	speed: 1100,
@@ -36,7 +36,7 @@ const customSliderOptions = {
 	arrows: true,
 };
 
-function createCustomSlider(options: any): void {
+function createCustomSlider(options:ICustomSlider): void {
 	if ("container" in options) {
 		console.log(options);
 	}
