@@ -7,6 +7,11 @@ interface ISlider {
 	arrows?: boolean;
 	animationName?: string;
 }
+// Необхідно типізувати об'єкт налаштувань, який буде залежним від інтерфейсу ISlider
+type CustomSliderBase = Required<Omit<ISlider, "animationName" | "speed">>;
+interface ICustomSlider extends CustomSliderBase {
+	speed: number;
+}
 
 function createSlider({
 	container = "",
@@ -21,9 +26,7 @@ function createSlider({
 
 createSlider();
 
-// Необходимо типизировать объект настроек, который будет зависим
-// от интерфейса ISlider
-// Все поля в нем обязательны для заполнения
+// Усі поля у ньому обов'язкові заповнення
 const customSliderOptions = {
 	container: "id",
 	numberOfSlides: 4,
