@@ -1,11 +1,36 @@
 // Необхідно типізувати цей великий об'єкт
+interface IFitnessClass {
+	name: string;
+	startsAt: string;
+	duration: number;
+}
 // Властивість майбутніх класів повинна бути залежною від класів за типом
+interface IFutureClass extends Omit<IFitnessClass, "startsAt"> {
+	willStartsAt: string;
+}
 // Властивості exClients та futureClients теж повинні бути залежними від currClients
+interface IClient {
+	name: string;
+	age: string | number;
+	gender: "male" | "female";
+	timeLeft: string;
+	makeCallFor: Date;
+}
 // АБО всі три залежать від спільного батька
-
+type CurrClient = Omit<IClient, "makeCallFor">;
+type ExClient = Omit<IClient, "timeLeft">;
+type FutureClient = Pick<IClient, "name" | "makeCallFor">;
 // Простими словами: при додаванні властивості цільової об'єкт вони повинні бути
+interface IFitnessClub {
+	clubName: string;
+	location: string;
+	classes: IFitnessClass[];
+	futureClasses: IFutureClass[];
+	currClients: CurrClient[];
+	exClients: ExClient[];
+	futureClients: FutureClient[];
+}
 // автоматично додані в залежні (відразу підказка від TS)
-
 const fitnessClubCenter = {
 	clubName: "Fitness club Center",
 	location: "central ave. 45, 5th floor",
