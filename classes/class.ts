@@ -55,6 +55,24 @@ const coloredBox = new ColoredBox(200, 150, 'red');
   console.log(coloredBox.boxContent = 'Test Items');
   console.log(coloredBox.boxContent);
 
+class PresentBox extends Box {
+  wraper!:string;
+
+  constructor(wraper:string, width:number, height:number) {
+    super(width, height);
+    this.wraper = wraper;
+  }
+
+}
+
+
+
+
+
+
+
+
+
 
 // todo cd classes
 //todo ts-node class.ts
