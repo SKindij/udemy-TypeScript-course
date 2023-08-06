@@ -1,4 +1,5 @@
 class Player {
+  static game:string = 'War Frogs';
   private login:string;
   private _password:string;
   public server:string;
@@ -18,36 +19,49 @@ class Player {
     set password(newPass:string) {
       this._password = newPass;
     }
-   
+
+    static getGameName() {
+      return Player.game;
+    }
+   // важливо слідкувати за this
+    logIn(this:Player) {
+      return `Player ${this.login} online!`
+    }
+
+    connect() {
+      // do something
+      return this;
+    }
 }
 
 // Використання геттерів та сеттерів дозволяє забезпечити додаткові перевірки або логіку при отриманні та зміні значень властивостей.
 // Наприклад, ти можеш додати перевірку довжини паролю в методі set password(newPass: string), 
 // щоб переконатись, що пароль задовольняє певним вимогам, або зашифрувати пароль перед збереженням в _password.
 
-const firstPlayer = new Player('Long Red', 'mypassword', 'Europe', true);
-  console.dir(firstPlayer);
-
-firstPlayer.password = 'anotherPassword';
-  console.dir(firstPlayer);
-
-
 class CompetitivePlayer extends Player {
   // опціональна властивість
   rank?:number;
+
+  checkLogin() {
+    return super.logIn();
+  }
 
   isConsented():string {
     return this.consent ? 'Yes' : "No";
   }
 }
 
+console.log(Player.getGameName());
+
+const firstPlayer = new Player('Long Red', 'mypassword', 'Europe', true);
+  console.log(firstPlayer.logIn());
+firstPlayer.password = 'anotherPassword'; 
+  console.dir(firstPlayer.connect());
+
 const secondPlayer = new CompetitivePlayer ('Silver Breez', 'sentFent', 'USA', false);
   secondPlayer.rank = 2;
-  console.dir(secondPlayer);
-
-
-
-
+  console.log(secondPlayer.checkLogin());
+  console.dir(secondPlayer.connect());
 
 
 
