@@ -9,39 +9,73 @@ interface Queue<T> {
 // Реалізація черги через масив
 // Клас ArrayQueue має імплементувати інтерфейс Queue
 // Клас може поміщати будь-які дані в масив
-class ArrayQueue {
-
+class ArrayQueue<T> implements Queue<T> {
+    private queue: T[] = [];
+  // поставити в чергу
+    enqueue(this:ArrayQueue<T>, item:T):void {
+      this.queue.push(item);
+    }  
+  // виключити з черги
+    dequeue(this:ArrayQueue<T>):T {
+      if (this.isEmpty()) {
+          throw new Error("Queue Underflow");
+      }
+      return this.queue.shift() as T;
+    }
+  // переглянути перший елемент
+    peek(this:ArrayQueue<T>):T|null {
+      if (this.isEmpty()) {
+         return null;
+      }
+      return this.queue[0];
+    }
+  // перевірка на "порожнечу" сутності
+    isEmpty(this:ArrayQueue<T>):boolean {
+      return this.queue.length === 0;
+    }
+  // перевірка на довжину
+    length(this:ArrayQueue<T>):number {
+      return this.queue.length;
+    }
 }
 
 // Клас Stack містить інші методи, тому нічого імплементувати не потрібно
 // Клас може поміщати будь-які дані в масив
-class Stack {
-
-
-
-	// Тут ми встановимо ліміт на стопку листів.
+class Stack<T> {
+    private stack:T[] = [];
+	private limit:number;
+	// Тут ми встановимо ліміт на стопку листів
 	constructor(limit:number = Number.MAX_VALUE) {
 		this.limit = limit;
 	}
 
-	push(value) {
-
+	push(this:Stack<T>, value:T) {
+		if (this.length() + 1 > this.limit) {
+			throw new Error("Stack Overflow");
+		}
+		this.stack.push(value);
 	}
 
-	pop() {
-
+	pop(this: Stack<T>): T {
+		if (this.length() !== 0) {
+			return this.stack.pop() as T;
+		}
+		throw new Error("Stack Underflow");
 	}
 
-	length() {
-	
+	length(this:Stack<T>):number {
+		return this.stack.length;
 	}
 
-	isEmpty() {
-		
+	isEmpty(this:Stack<T>):boolean {
+		return this.length() === 0;
 	}
 
-	top() {
-		
+	top(this:Stack<T>):T|null {
+		if (this.length() !== 0) {
+			return this.stack[this.length() - 1];
+		}
+		return null;
 	}
 }
 
@@ -74,23 +108,6 @@ stackTest2.push("50");
 console.log(stackTest2.top());
 console.log(stackTest2.pop());
 console.log(stackTest2.length());
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 //todo cd practice
