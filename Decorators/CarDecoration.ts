@@ -9,30 +9,46 @@ class myCar implements ICar {
   fuel:string = "50%";
   open:boolean = true;
   freeSeats:number = 3;
-   // method to check if doors are open or closed
-  isOpen() {
-	console.log(`Fuel level: ${this.fuel}`);
+   // apply decorator to the 'isOpen' method
+  @checkAmountOfFuel
+  isOpen(value:string) {	
+    // check if doors are open or closed
 	return this.open ? "doors open" : "doors close";
   }
 };
 
-// changeDoorStatus(changeAmountOfFuel(myCar))
-// returns decorator to change door status of class
-function changeDoorStatus(status: boolean) {
-  console.log("door init");
-  return <T extends { new (...args: any[]): {} }>(constructor: T) => {
-	console.log("door changed");
+// decorator to log and modify behavior of 'isOpen' method
+function checkAmountOfFuel(
+  target:Object,
+  propertyKey:string|symbol,
+  descriptor:PropertyDescriptor
+): PropertyDescriptor|void {
+  const oldValue = descriptor.value;
+   // modify behavior of method
+  descriptor.value = function (this:any, ...args:any[]) {
+	console.log(`Fuel level: ${this.fuel}`);
+	return oldValue.apply(this, args);
+  };
+}
+
+// Decorator factory function
+function changeDoorStatus(status:boolean) {
+  // decorator function to change door status of class
+  return <T extends { new (...args:any[]):{} }>(constructor:T) => {
+	console.log("door status changed");
+    // new class that extends original constructor
 	return class extends constructor {
 	  open = status;
 	};
   };
 };
 
-// returns decorator to change amount of fuel of class
-function changeAmountOfFuel(amount: number) {
-  console.log("fuel init");
-  return <T extends { new (...args: any[]): {} }>(constructor: T) => {
-	console.log("fuel changed");
+// Decorator factory function
+function changeAmountOfFuel(amount:number) {
+  // decorator function to change amount of fuel of class
+  return <T extends { new (...args:any[]):{} }>(constructor:T) => {
+	console.log("fuel amount changed");
+    // new class that extends original constructor
 	return class extends constructor {
 	  fuel = `${amount}%`;
 	};
@@ -41,19 +57,14 @@ function changeAmountOfFuel(amount: number) {
 
 // create an instance of myCar
 const car = new myCar();
-console.log(car.isOpen());
+console.log(car.isOpen("checked"));
 /* output
-  => door init
-  => fuel init
-  => fuel changed
-  => door changed
-  => Fuel level: 75%
+  => fuel amount changed
+  => door status changed
+  => Fuel level: 75% 
   => doors open
+
 */
-
-
-
-
 
 
 /*
