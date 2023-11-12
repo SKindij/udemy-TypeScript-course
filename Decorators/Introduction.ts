@@ -1,6 +1,9 @@
-// Introduction.ts
+// Decorators/Introduction.ts
+import { Car } from './Interfaces';
 
-const myCar = {
+
+// object that conforms to Car interface
+const myCar:Car = {
 	fuel: "50%",
 	open: true,
 	freeSeats: 3,
@@ -23,13 +26,21 @@ function addFuel(car: typeof myCar) {
 	return car;
 }
 
+// launch function composition f(x());
 addFuel(closeCar(myCar)).isOpen();
+/* output
+    => close car
+    => add fuel
+    => Fuel level: 100%
+*/
+ 
 
-// f(x());
 
 
 
 
 
-
-
+/*
+cd Decorators
+ts-node Introduction.ts
+*/
