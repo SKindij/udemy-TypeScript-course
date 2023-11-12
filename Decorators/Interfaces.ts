@@ -1,10 +1,10 @@
 // Decorators/Interfaces.ts
-export interface Car {
+export interface ICar {
     fuel: string;
     open: boolean;
     freeSeats: number;
     isOpen(): "open" | "close";
-}
+};
 
 
 

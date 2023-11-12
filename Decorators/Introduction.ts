@@ -1,37 +1,39 @@
 // Decorators/Introduction.ts
-import { Car } from './Interfaces';
+import { ICar } from './Interfaces';
 
-
-// object that conforms to Car interface
-const myCar:Car = {
-	fuel: "50%",
-	open: true,
-	freeSeats: 3,
+@closeCar
+class myCar implements ICar {
+	fuel:string = "50%";
+	open:boolean = true;
+	freeSeats:number = 3;
 	isOpen() {
-		console.log(`Fuel level: ${this.fuel}.`);
+		console.log(`Fuel level: ${this.fuel}`);
 		return this.open ? "open" : "close";
-	},
-};
+	}
+}
 
 // decorators are functions that can modify objects
-function closeCar(car: typeof myCar) {
+function closeCar(car:myCar) {
 	car.open = false;
 	console.log("close car");
 	return car;
 }
 
-function addFuel(car: typeof myCar) {
+function addFuel(car:myCar) {
 	car.fuel = "100%";
 	console.log("add fuel");
 	return car;
 }
 
+const mySomeCar = new myCar();
+
+
+
 // launch function composition f(x());
-addFuel(closeCar(myCar)).isOpen();
+closeCar(mySomeCar).isOpen();
 /* output
     => close car
-    => add fuel
-    => Fuel level: 100%
+    => Fuel level: 50%
 */
  
 
