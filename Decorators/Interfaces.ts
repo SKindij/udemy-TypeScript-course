@@ -3,7 +3,7 @@ export interface ICar {
     fuel: string;
     open: boolean;
     freeSeats: number;
-    isOpen(): "open" | "close";
+    isOpen(): "doors open" | "doors close";
 };
 
 

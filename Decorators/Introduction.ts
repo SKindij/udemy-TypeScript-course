@@ -10,7 +10,7 @@ class myCar implements ICar {
 	freeSeats:number = 3;
 	isOpen() {
 		console.log(`Fuel level: ${this.fuel}`);
-		return this.open ? "open" : "close";
+		return this.open ? "doors open" : "doors close";
 	}
 }
 
