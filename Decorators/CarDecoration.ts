@@ -8,21 +8,56 @@ class myCar implements ICar {
   // default values for properties
   fuel:string = "50%";
   open:boolean = true;
+  errors: any;
+
+  @checkNumberOfSeats(4)
   freeSeats:number = 3;
+
    // apply decorator to the 'isOpen' method
   @checkAmountOfFuel
   isOpen(value:string) {	
     // check if doors are open or closed
-	return this.open ? "doors open" : "doors close";
+	  return this.open ? "doors open" : "doors close";
   }
 };
+
+// decorator factory function
+function checkNumberOfSeats(limit:number) {
+	return function (target:Object, propertyKey:string|symbol) {
+    // create unique symbol to store value
+		let symbol = Symbol();
+
+    // define getter function for property
+		const getter = function (this: any) {
+			return this[symbol];
+		};
+
+     // define setter function for property
+		const setter = function (this:any, newAmount:number) {
+      // if new amount is within limit, set value
+			if (newAmount >= 1 && newAmount < limit) {
+				this[symbol] = newAmount + 1;
+			} else {
+				Object.defineProperty(target, "errors", {
+					value: `There cannot be more than ${limit} seats!`,
+				});
+			}
+		};
+
+    // define property with getter and setter
+		Object.defineProperty(target, propertyKey, {
+			get: getter,
+			set: setter,
+		});
+	};
+}
 
 // decorator to log and modify behavior of 'isOpen' method
 function checkAmountOfFuel(
   target:Object,
   propertyKey:string|symbol,
   descriptor:PropertyDescriptor
-): PropertyDescriptor|void {
+):PropertyDescriptor|void {
   const oldValue = descriptor.value;
    // modify behavior of method
   descriptor.value = function (this:any, ...args:any[]) {
@@ -65,6 +100,11 @@ console.log(car.isOpen("checked"));
   => doors open
 
 */
+
+car.freeSeats = 3;
+console.log(car);
+console.log(car.errors);
+
 
 
 /*
